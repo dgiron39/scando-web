@@ -331,51 +331,52 @@ h1 {
 
 .wall-art {
   position: relative;
-  width: 320px;
-  height: 360px;
+  width: 340px;
+  height: 400px;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 24px;
+  border-radius: 28px;
   overflow: hidden;
 }
 
 .hold {
   position: absolute;
   border-radius: 50%;
-  background: rgba(46,117,255,0.25);
-  border: 2px solid rgba(46,117,255,0.5);
+  background: rgba(46,117,255,0.2);
+  border: 2px solid rgba(46,117,255,0.45);
 }
 
-.h1 { width: 28px; height: 20px; top: 60px; left: 60px; transform: rotate(-15deg); }
-.h2 { width: 24px; height: 18px; top: 100px; right: 80px; transform: rotate(20deg); }
-.h3 { width: 32px; height: 22px; top: 160px; left: 90px; transform: rotate(-8deg); }
-.h4 { width: 22px; height: 16px; top: 200px; right: 60px; transform: rotate(12deg); }
-.h5 { width: 30px; height: 20px; top: 260px; left: 70px; transform: rotate(-20deg); }
-.h6 { width: 20px; height: 16px; top: 290px; right: 90px; transform: rotate(5deg); }
+.h1 { width: 34px; height: 22px; top: 28px; left: 48px; transform: rotate(-18deg); }
+.h2 { width: 26px; height: 17px; top: 50px; right: 44px; transform: rotate(22deg); }
+.h3 { width: 30px; height: 20px; top: 130px; left: 30px; transform: rotate(-10deg); }
+.h4 { width: 22px; height: 15px; top: 170px; right: 52px; transform: rotate(14deg); }
+.h5 { width: 36px; height: 22px; top: 260px; left: 44px; transform: rotate(-22deg); }
+.h6 { width: 24px; height: 16px; top: 310px; right: 48px; transform: rotate(8deg); }
+.h7 { width: 28px; height: 18px; top: 360px; left: 80px; transform: rotate(-12deg); }
 
-.route-line {
+.rope {
   position: absolute;
-  left: 50%;
-  top: 40px;
-  bottom: 40px;
+  left: 54%;
+  top: 0;
+  bottom: 0;
   width: 2px;
-  background: linear-gradient(to bottom, rgba(46,117,255,0.6), rgba(46,117,255,0.1));
-  transform: translateX(-50%);
+  background: linear-gradient(to bottom, rgba(46,117,255,0.7) 0%, rgba(46,117,255,0.15) 100%);
 }
 
 .climber-svg {
   position: absolute;
   left: 50%;
-  top: 30px;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 120px;
-  animation: climb 3s ease-in-out infinite alternate;
+  top: 20px;
+  transform: translateX(-58%);
+  width: 100px;
+  height: 160px;
+  filter: drop-shadow(0 0 12px rgba(46,117,255,0.35));
+  animation: climb 2.8s ease-in-out infinite alternate;
 }
 
 @keyframes climb {
-  0% { transform: translateX(-50%) translateY(0px); }
-  100% { transform: translateX(-50%) translateY(80px); }
+  0%   { transform: translateX(-58%) translateY(0px); }
+  100% { transform: translateX(-58%) translateY(160px); }
 }
 
 footer {

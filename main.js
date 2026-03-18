@@ -1,8 +1,9 @@
+const SUPABASE_URL = 'https://zckaxefrnrwiisnbwjgf.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpja2F4ZWZybnJ3aWlzbmJ3amdmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1NjYwNDcsImV4cCI6MjA4OTE0MjA0N30._4KhpdmK9UD__jbKX-22qKEGeI5YgERWmFShcSJF1IQ';
+
 const form = document.getElementById('signupForm');
 const note = document.getElementById('signupNote');
 const input = document.getElementById('emailInput');
-
-const FORM_URL = 'https://formspree.io/f/placeholder';
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -11,25 +12,30 @@ form.addEventListener('submit', async (e) => {
 
   const btn = form.querySelector('button');
   btn.disabled = true;
-  btn.innerHTML = '<span>Joining...</span>';
+  btn.querySelector('span').textContent = 'Joining...';
 
   try {
-    const res = await fetch(FORM_URL, {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        'Prefer': 'return=minimal',
+      },
       body: JSON.stringify({ email }),
     });
 
-    if (res.ok) {
+    if (res.ok || res.status === 409) {
       form.style.display = 'none';
       note.textContent = "You're on the list. We'll be in touch.";
-      note.classList.add('success');
+      note.className = 'signup-note success';
     } else {
-      throw new Error('failed');
+      throw new Error(res.status);
     }
   } catch {
-    note.textContent = "Something went wrong — try again.";
     btn.disabled = false;
-    btn.innerHTML = '<span>Notify Me</span><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    btn.querySelector('span').textContent = 'Notify Me';
+    note.textContent = 'Something went wrong — please try again.';
   }
 });
